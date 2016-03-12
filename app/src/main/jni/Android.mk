@@ -17,6 +17,18 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := modulocalculator 
-LOCAL_SRC_FILES := modulo_calculator_jni.c
+LOCAL_SRC_FILES := modulo_calculator.cpp \
+    modulo_calculator_jni.cpp
 
 include $(BUILD_SHARED_LIBRARY)
+
+
+# Unit test for native functions
+include $(CLEAR_VARS)
+LOCAL_MODULE := modulocalculator_unittest
+LOCAL_SRC_FILES := modulo_calculator_unittest.cc
+LOCAL_SHARED_LIBRARIES := modulocalculator
+LOCAL_STATIC_LIBRARIES := googletest_main
+include $(BUILD_EXECUTABLE)
+
+$(call import-module,third_party/googletest)
