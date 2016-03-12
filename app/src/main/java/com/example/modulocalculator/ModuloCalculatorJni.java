@@ -1,6 +1,8 @@
 package com.example.modulocalculator;
 
-
+/**
+ * Created by domzjing@gmail.com on 12/03/16.
+ */
 public class ModuloCalculatorJni {
 
     public native int nativeAdd(int x, int y);
