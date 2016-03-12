@@ -1,7 +1,6 @@
 package com.example.modulocalculator;
 
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * Created by domzjing@gmail.com on 12/03/16.
@@ -15,7 +14,6 @@ public class Expression {
     private int mOperandX;
     private int mOperandY;
     private Character mOperator;
-//    private int mOperandCount;
 
     public Expression(String expression) {
         if(expression == null || expression.trim().length() == 0) {
@@ -29,17 +27,9 @@ public class Expression {
         int result = 0xFFFFFFFF;
 
         // Parse the expression, a simple expression parser implemented for the modulo calculator
-//        String operators[] = this.mExpression.split("x|-|\\+");
         String operators[] = mExpression.split("x|-|\\+");
-//        Log.d(TAG, "Original expression length: " + expression.trim().length());
-//        Log.d(TAG, "Original expression:" + expression);
-
-//        Log.d(TAG, "Token + " + expression.indexOf('+'));
-//        Log.d(TAG, "Token - " + expression.indexOf('-'));
-//        Log.d(TAG, "Token x " + expression.indexOf('x'));
-
 //        Log.d(TAG, "Operators length " + operators.length);
-//        mOperandCount = operators.length;
+
         if(operators.length < 2) {
             // Invalid expression
             return result;
@@ -52,11 +42,6 @@ public class Expression {
         } else if(mExpression.indexOf('x') > 0) {
             mOperator = 'x';
         }
-//FIXME
-//        if(mOperator != '+' && mOperator != '-' && mOperator != 'x') {
-//            // Invalid expression
-//            return result;
-//        }
 
 //        for(int i=0; i<operators.length; i++)
 //            Log.d(TAG, "Operator " + i + "=" + operators[i]);
@@ -90,10 +75,8 @@ public class Expression {
                 break;
         }
 
-//        mOperandCount = '=';
-        result = nativeCalculator.nativeModulo(result, FIXED_DIVIDEND);
-        Log.d(TAG, "Expression " + result + " mod " + FIXED_DIVIDEND + " = " + result);
+        return nativeCalculator.nativeModulo(result, FIXED_DIVIDEND);
+//        Log.d(TAG, "Expression " + result + " mod " + FIXED_DIVIDEND + " = " + result2);
 //        return nativeCalculator.nativeMultiply(result, FIXED_DIVIDEND);
-        return result;
     }
 }

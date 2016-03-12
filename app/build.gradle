@@ -7,7 +7,7 @@ model {
 
         defaultConfig.with {
             applicationId = "com.example.modulocalculator"
-            minSdkVersion.apiLevel = 4
+            minSdkVersion.apiLevel = 17
             targetSdkVersion.apiLevel = 23
         }
     }
@@ -58,4 +58,10 @@ model {
         // To include all cpu architectures, leaves abiFilters empty
         create("all")
     }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
 }

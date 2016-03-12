@@ -2,6 +2,7 @@ package com.example.modulocalculator;
 
 /**
  * Created by domzjing@gmail.com on 12/03/16.
+ * All calculation methods implemented in native library.
  */
 public class ModuloCalculatorJni {
 

@@ -16,14 +16,11 @@
 package com.example.modulocalculator;
 
 import android.app.Activity;
-//import android.widget.TextView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.StringTokenizer;
 
 
 public class ModuloCalculatorActivity extends Activity
@@ -34,7 +31,7 @@ public class ModuloCalculatorActivity extends Activity
             R.id.btn_six, R.id.btn_zero};
     private int[] mOperatorButtons = {R.id.btn_add, R.id.btn_subtract, R.id.btn_multiply};
     private TextView mTextView;
-    // In our case, only two oprands are allowed in one expression
+    // In our case, only two operands are allowed in one expression
     private boolean mlastOperator = false;
 
     @Override
@@ -48,23 +45,6 @@ public class ModuloCalculatorActivity extends Activity
         numberOnClickListenr();
         // Set OnclickListener to operator buttons
         operatorOnClickListener();
-
-//        TextView  tv = new TextView(this);
-//        ModuloCalculatorJni mJni = new ModuloCalculatorJni();
-//        tv.setText("result equal " + mJni.nativeAdd(300, 500));
-
-//        tv.setText("result equal " + mJni.nativeSubtract(700, 500));
-//        tv.setText("result equal " + mJni.nativeSubtract(700, 900));
-
-//        tv.setText("result equal " + mJni.nativeMultiply(400, 5));
-//          tv.setText("result equal " + mJni.nativeMultiply(-7, 5));
-
-//        tv.setText("result equal " + mJni.nativeModulo(15, 9));
-//        tv.setText("result equal " + mJni.nativeModulo(-7, 3)); // 2
-//        tv.setText("result equal " + mJni.nativeModulo(-25, 7)); // 3
-//        tv.setText("result equal " + mJni.nativeModulo(25, -7)); // 3
-//        tv.setText("result equal " + mJni.nativeModulo(-25, -7)); // 3
-//        setContentView(tv);
     }
 
     // Set OnClickListener to numeral buttons
@@ -114,7 +94,7 @@ public class ModuloCalculatorActivity extends Activity
         //Equal button
         findViewById(R.id.btn_equal).setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View view) {
+            public void onClick(View view) {
                 // Intend to process the whole expression in another class
                 // to separate logic functions from UI implement
                 String expression = mTextView.getText().toString();
@@ -123,14 +103,9 @@ public class ModuloCalculatorActivity extends Activity
 //                Expression exp = new Expression(expression);
 //                int result = exp.evaluate();
                 if(result != 0xFFFFFFFF) {
+                    // If result equals 0xFFFFFFFF, do nothing
                     mTextView.setText(Integer.toString(result));
                 }
-                // If result equals 0xFFFFFFFF, do nothing
-
-//                StringTokenizer stringTokenizer = new StringTokenizer(expression, "+|-|x");
-//                while (stringTokenizer.hasMoreTokens()) {
-//                    Log.d(TAG, "Token " + stringTokenizer.nextToken());
-//                }
             }
         });
     }
