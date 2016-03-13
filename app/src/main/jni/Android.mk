@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# This NDK project Makefile only for unit testing purpose by Googletest
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)

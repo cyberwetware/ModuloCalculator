@@ -6,7 +6,7 @@ import com.example.android.modulocalculator.ModuloCalculatorJni;
 
 /**
  * Created by domzjing@gmail.com on 12/03/16.
- * Simple calculation library
+ * Simple calculation library, include expression parser and native methods invoking
  */
 public class Expression {
     private final static String TAG = "Expression";
@@ -16,10 +16,14 @@ public class Expression {
     private int mOperandX;
     private int mOperandY;
     private Character mOperator;
+    ModuloCalculatorJni mNativeCalculator;
 
     public Expression(String expression) {
         this.mExpression = expression;
+
+        mNativeCalculator = new ModuloCalculatorJni();
     }
+
     // Calculator needs two oprands in an expression
     public int evaluate() {
         int result = 0xFFFFFFFF;
@@ -41,40 +45,26 @@ public class Expression {
             mOperator = 'x';
         }
 
-//        for(int i=0; i<operators.length; i++)
-//            Log.d(TAG, "Operator " + i + "=" + operators[i]);
+        // Some invalid expressions will trigger the exception
         try {
             mOperandX = Integer.parseInt(operators[0]);
             mOperandY = Integer.parseInt(operators[1]);
         } catch (NumberFormatException e) {
-            // TODO
             e.printStackTrace();
         }
-        // Calculator needs two oprands in an expression
-//        if(mOperandCount < 2 || mOperator == '=') {
-//            // Invalid expression
-//            return result;
-//        }
-
-        ModuloCalculatorJni nativeCalculator = new ModuloCalculatorJni();
 
         switch (mOperator) {
             case '+':
-                result = nativeCalculator.nativeAdd(mOperandX, mOperandY);
-                Log.d(TAG, "Expression " + mOperandX + " + " + mOperandY + " = " + result);
+                result = mNativeCalculator.nativeAdd(mOperandX, mOperandY);
                 break;
             case '-':
-                result = nativeCalculator.nativeSubtract(mOperandX, mOperandY);
-                Log.d(TAG, "Expression " + mOperandX + " - " + mOperandY + " = " + result);
+                result = mNativeCalculator.nativeSubtract(mOperandX, mOperandY);
                 break;
             case 'x':
-                result = nativeCalculator.nativeMultiply(mOperandX, mOperandY);
-                Log.d(TAG, "Expression " + mOperandX + " x " + mOperandY + " = " + result);
+                result = mNativeCalculator.nativeMultiply(mOperandX, mOperandY);
                 break;
         }
 
-        return nativeCalculator.nativeModulo(result, FIXED_DIVIDEND);
-//        Log.d(TAG, "Expression " + result + " mod " + FIXED_DIVIDEND + " = " + result2);
-//        return nativeCalculator.nativeMultiply(result, FIXED_DIVIDEND);
+        return mNativeCalculator.nativeModulo(result, FIXED_DIVIDEND);
     }
 }

@@ -44,7 +44,9 @@ public class ModuloCalculatorActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.mTextView = (TextView) findViewById(R.id.txtEdit);
+
+        // Obtain TextView object
+        this.mTextView = (TextView) findViewById(R.id.textEdit);
 
         // Set OnclickListener to numeral buttons
         numberOnClickListenr();
@@ -119,7 +121,7 @@ public class ModuloCalculatorActivity extends Activity
                 // to separate logic functions from UI implement
                 String expression = mTextView.getText().toString();
                 if(expression == null || expression.trim().length() == 0) {
-                   // Do no process empty expression
+                   // Do nothing for empty expression
                     return ;
                 }
 
