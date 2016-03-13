@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ndk-build -j8
+
 adb push libs/armeabi-v7a/libgnustl_shared.so /data/local/tmp
 adb push libs/armeabi-v7a/libmodulocalculator.so /data/local/tmp
 adb push libs/armeabi-v7a/modulocalculator_unittest /data/local/tmp

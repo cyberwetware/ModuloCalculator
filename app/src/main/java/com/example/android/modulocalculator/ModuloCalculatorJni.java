@@ -1,4 +1,4 @@
-package com.example.modulocalculator;
+package com.example.android.modulocalculator;
 
 /**
  * Created by domzjing@gmail.com on 12/03/16.
@@ -15,6 +15,6 @@ public class ModuloCalculatorJni {
     public native int nativeModulo(int x, int y);
 
     static {
-        System.loadLibrary("modulocalculator");
+        System.loadLibrary("android.modulocalculator");
     }
 }

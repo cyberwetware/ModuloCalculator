@@ -9,15 +9,15 @@ Multiplying two numbers modulo 7
 Todo List
 =========
 
-Native calculation funcions
-Unit test case
+Native calculation funcions [Done]
+Unit test case [Done]
 UI Automation testing implement
 
 
 Know Issues
 =========
 1. Zero and operators are not allowed to input as the first number
-2. One number and one operator in the expression
+2. One number and one operator in the expression [Fixed]
 3. Previous contents in Textview is not cleared in next typing
 2. The first operand shoud not be positive only
 3. System input method should not be launched

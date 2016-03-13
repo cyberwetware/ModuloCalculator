@@ -13,26 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.modulocalculator;
+package com.example.android.modulocalculator;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.modulocalculator.R;
 
 
 public class ModuloCalculatorActivity extends Activity
 {
     private final static String TAG = "ModuloCalcActivity";
+
     private int[] mNumberButtons = {R.id.btn_one, R.id.btn_two, R.id.btn_three,
             R.id.btn_four, R.id.btn_five,
             R.id.btn_six, R.id.btn_zero};
     private int[] mOperatorButtons = {R.id.btn_add, R.id.btn_subtract, R.id.btn_multiply};
     private TextView mTextView;
+    // Indicator of contents in TextView
+    private boolean mEmptyText;
+
     // In our case, only two operands are allowed in one expression
-    private boolean mlastOperator = false;
+    private boolean mlastOperator;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -45,15 +50,25 @@ public class ModuloCalculatorActivity extends Activity
         numberOnClickListenr();
         // Set OnclickListener to operator buttons
         operatorOnClickListener();
+
+        this.mlastOperator = false;
+        this.mEmptyText = true;
     }
 
     // Set OnClickListener to numeral buttons
     private void numberOnClickListenr() {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
-        public void onClick(View view) {
+            public void onClick(View view) {
                 Button button = (Button) view;
-                mTextView.append(button.getText());
+
+                if(mEmptyText == true)
+                    // Clean the contents on the TextView
+                    mTextView.setText(button.getText());
+                else {
+                    mTextView.append(button.getText());
+                }
+                mEmptyText = false;
             }
         };
         // Register the listener to all the numeral buttons
@@ -67,6 +82,10 @@ public class ModuloCalculatorActivity extends Activity
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(mEmptyText == true) {
+                    // Avoid operator as first character
+                    return;
+                }
                 if(mlastOperator == false) {
                     Button button = (Button) view;
                     mTextView.append(button.getText());
@@ -88,6 +107,7 @@ public class ModuloCalculatorActivity extends Activity
                 mTextView.setText("");
                 // Reset the flag
                 mlastOperator = false;
+                mEmptyText = true;
             }
         });
 
@@ -98,13 +118,19 @@ public class ModuloCalculatorActivity extends Activity
                 // Intend to process the whole expression in another class
                 // to separate logic functions from UI implement
                 String expression = mTextView.getText().toString();
+                if(expression == null || expression.trim().length() == 0) {
+                   // Do no process empty expression
+                    return ;
+                }
+
                 // Calculation
                 int result = (new Expression(expression)).evaluate();
-//                Expression exp = new Expression(expression);
-//                int result = exp.evaluate();
                 if(result != 0xFFFFFFFF) {
                     // If result equals 0xFFFFFFFF, do nothing
                     mTextView.setText(Integer.toString(result));
+                    // Clear the flag for the next expression
+                    mEmptyText = true;
+                    mlastOperator = false;
                 }
             }
         });

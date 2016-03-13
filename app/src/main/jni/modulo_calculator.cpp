@@ -17,10 +17,5 @@ int multiply(int x, int y)
 
 int modulo(int x, int y)
 {
-    if((x > 0 && y > 0) || (x < 0) && (y < 0))
-        return x % y;
-    else if((x < 0 && y > 0))
-        return -((-x) % y);
-    else if((x > 0 && y < 0))
-        return -(x % (-y));
+    return x > 0 ? x % y : x + y * ((y - x - 1) / y);
 }

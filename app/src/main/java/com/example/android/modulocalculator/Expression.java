@@ -1,6 +1,8 @@
-package com.example.modulocalculator;
+package com.example.android.modulocalculator;
 
 import android.util.Log;
+
+import com.example.android.modulocalculator.ModuloCalculatorJni;
 
 /**
  * Created by domzjing@gmail.com on 12/03/16.
@@ -16,10 +18,6 @@ public class Expression {
     private Character mOperator;
 
     public Expression(String expression) {
-        if(expression == null || expression.trim().length() == 0) {
-            throw new IllegalArgumentException("Empty expression");
-        }
-
         this.mExpression = expression;
     }
     // Calculator needs two oprands in an expression
