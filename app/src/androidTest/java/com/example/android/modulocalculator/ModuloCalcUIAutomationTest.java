@@ -49,8 +49,7 @@ public class ModuloCalcUIAutomationTest {
         onView(withId(R.id.btn_multiply)).perform(click());
         onView(withId(R.id.btn_six)).perform(click());
         onView(withId(R.id.btn_equal)).perform(click());
-
-        // Check that the text was changed
+        // Check that the result in TextView
         onView(withId(R.id.txtEdit)).check(matches(withText("2")));
 //        onView(withId(R.id.txtEdit)).check(ViewAssertions.matches(isDisplayed()));
     }

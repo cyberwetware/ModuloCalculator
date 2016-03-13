@@ -6,6 +6,13 @@ Subtracting two numbers modulo 7
 Multiplying two numbers modulo 7
 
 
+Application Testing
+=========
+
+app/src/androidTest/java/com/example/android/modulocalculator
+/ModuloCalcPerformanceTest.sh
+
+
 Todo List
 =========
 
