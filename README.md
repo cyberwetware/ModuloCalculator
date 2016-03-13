@@ -16,12 +16,15 @@ UI Automation testing implement
 
 Know Issues
 =========
-1. Zero and operators are not allowed to input as the first number
+1. Zero are not allowed to input as the first number
+1. First character should not be an operator [Fixed]
 2. One number and one operator in the expression [Fixed]
-3. Previous contents in Textview is not cleared in next typing
+3. Previous contents in Textview is not cleared in next typing [Fixed]
 2. The first operand shoud not be positive only
-3. System input method should not be launched
+3. System input method should not be launched [Fixed]
 
 Author
 =========
+Jing Zhang
+Android System Engineer
 domzjing@gmail.com
