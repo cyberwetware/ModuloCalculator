@@ -37,7 +37,6 @@ Know Issues
 
 Author
 =========
-Jing Zhang
+J Zhang
 Android System Engineer
-domzjing@gmail.com
 
